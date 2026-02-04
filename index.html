@@ -5,13 +5,11 @@
 <title>Готовность производства</title>
 <style>
 :root{
- --glass:rgba(22,24,30,.78);
+ --glass:rgba(18,20,26,.72); /* полупрозрачный тёмно‑серый */
  --gold:#caa24f;
  --gold-hi:#f4e3a1;
- --gold-deep:#8a6a1f;
  --text:#f7f8fb;
  --muted:#d7caa0;
- --shadow-deep:rgba(0,0,0,.55);
 }
 *{box-sizing:border-box}
 body{
@@ -27,16 +25,16 @@ body{
 .card{
  position:relative;
  background:
- radial-gradient(140%140% at10%0%, rgba(255,255,255,.08), transparent60%),
- linear-gradient(135deg, rgba(255,255,255,.06), rgba(0,0,0,.35)),
+ radial-gradient(140%140% at10%0%, rgba(255,255,255,.06), transparent60%),
+ linear-gradient(135deg, rgba(255,255,255,.04), rgba(0,0,0,.35)),
  var(--glass);
  border:2px solid var(--gold);
  border-radius:24px;
  padding:clamp(16px,3vw,24px);
  margin-bottom:clamp(12px,3vw,18px);
  box-shadow:
-018px42px var(--shadow-deep),
- inset01px0 rgba(255,255,255,.22),
+018px42px rgba(0,0,0,.5),
+ inset01px0 rgba(255,255,255,.18),
  inset0 -3px8px rgba(0,0,0,.6);
 }
 .card:before{
@@ -44,7 +42,7 @@ body{
  position:absolute;
  inset:2px;
  border-radius:22px;
- border:1px solid rgba(255,255,255,.08);
+ border:1px solid rgba(255,255,255,.06);
  pointer-events:none;
 }
 .card:after{
@@ -90,7 +88,7 @@ input{
  margin-top:8px;
  outline:none;
  box-shadow:
- inset01px0 rgba(255,255,255,.15),
+ inset01px0 rgba(255,255,255,.12),
 08px18px rgba(0,0,0,.35);
 }
 input:focus{
@@ -106,22 +104,29 @@ button{
  width:100%;
  border-radius:18px;
  margin-top:10px;
- color:#f8f2da;
- text-shadow:
-02px4px rgba(0,0,0,.65),
-0 -1px1px rgba(255,255,255,.25);
+
+ /* фон кнопки */
  background:
  linear-gradient(rgba(0,0,0,.28), rgba(0,0,0,.28)),
  url("https://i.pinimg.com/1200x/ab/60/f9/ab60f9ee3911eab2ca23f391a5fd9622.jpg") center/cover no-repeat;
  border:2px solid var(--gold);
  box-shadow:
 014px28px rgba(0,0,0,.45),
- inset01px0 rgba(255,255,255,.32),
+ inset01px0 rgba(255,255,255,.28),
  inset0 -4px10px rgba(0,0,0,.55);
+
+ /* текст «выжженный/выбитый» */
+ color: rgba(30,20,12,0.85);
+ text-shadow:
+0 -1px1px rgba(0,0,0,0.7),
+01px0 rgba(255,255,255,0.25),
+02px6px rgba(0,0,0,0.65);
+ -webkit-text-stroke:0.6px rgba(0,0,0,0.5);
+ filter: drop-shadow(02px3px rgba(0,0,0,0.4));
 }
 button:active{
  transform:translateY(1px);
- box-shadow:010px20px rgba(0,0,0,.45), inset01px0 rgba(255,255,255,.28);
+ box-shadow:010px20px rgba(0,0,0,.45), inset01px0 rgba(255,255,255,.22);
 }
 
 #startCam{display:block}
@@ -155,12 +160,7 @@ button:active{
  text-shadow:02px6px rgba(0,0,0,.6);
  box-shadow:06px16px rgba(0,0,0,.35), inset01px0 rgba(255,255,255,.2);
 }
-
 .grid{display:grid;gap:8px}
-
-@media (max-width:360px){
- .card{border-radius:20px}
-}
 </style>
 </head>
 <body>
