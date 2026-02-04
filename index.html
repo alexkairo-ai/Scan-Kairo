@@ -115,11 +115,13 @@ button:active{transform:translateY(1px)}
 
  <div class="card">
  <h3>Выберите этап:</h3>
- <button onclick="sendStage('pila')">Пила</button>
- <button onclick="sendStage('hdf')">ХДФ</button>
- <button onclick="sendStage('kromka')">Кромка</button>
- <button onclick="sendStage('prisadka')">Присадка</button>
- <button onclick="sendStage('upakovka')">Упаковка</button>
+ <div id="stageButtons">
+ <button data-stage="pila">Пила</button>
+ <button data-stage="hdf">ХДФ</button>
+ <button data-stage="kromka">Кромка</button>
+ <button data-stage="prisadka">Присадка</button>
+ <button data-stage="upakovka">Упаковка</button>
+ </div>
  <div id="status">Готово к работе</div>
  </div>
 </div>
@@ -264,6 +266,15 @@ function scan(){
  }
  requestAnimationFrame(scan);
 }
+
+// --- Показ только одного этапа через ?only= ---
+const params = new URLSearchParams(location.search);
+const only = (params.get('only') || '').toLowerCase();
+document.querySelectorAll('#stageButtons button').forEach(btn=>{
+ const stage = btn.dataset.stage;
+ btn.onclick = () => sendStage(stage);
+ if (only && stage !== only) btn.style.display = 'none';
+});
 </script>
 </body>
 </html>
