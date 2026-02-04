@@ -5,7 +5,7 @@
 <title>Готовность производства</title>
 <style>
 :root{
- --glass:rgba(18,20,26,.72); /* полупрозрачный тёмно‑серый */
+ --glass:rgba(16,18,22,.78); /* тёмно‑серый полупрозрачный */
  --gold:#caa24f;
  --gold-hi:#f4e3a1;
  --text:#f7f8fb;
@@ -26,16 +26,16 @@ body{
  position:relative;
  background:
  radial-gradient(140%140% at10%0%, rgba(255,255,255,.06), transparent60%),
- linear-gradient(135deg, rgba(255,255,255,.04), rgba(0,0,0,.35)),
+ linear-gradient(135deg, rgba(255,255,255,.03), rgba(0,0,0,.45)),
  var(--glass);
  border:2px solid var(--gold);
  border-radius:24px;
  padding:clamp(16px,3vw,24px);
  margin-bottom:clamp(12px,3vw,18px);
  box-shadow:
-018px42px rgba(0,0,0,.5),
+018px42px rgba(0,0,0,.55),
  inset01px0 rgba(255,255,255,.18),
- inset0 -3px8px rgba(0,0,0,.6);
+ inset0 -4px10px rgba(0,0,0,.65);
 }
 .card:before{
  content:"";
@@ -51,8 +51,8 @@ body{
  inset:0;
  border-radius:24px;
  box-shadow:
-0024px rgba(202,162,79,.18),
- inset0018px rgba(202,162,79,.12);
+0028px rgba(202,162,79,.18),
+ inset0018px rgba(202,162,79,.10);
  pointer-events:none;
 }
 
@@ -87,9 +87,7 @@ input{
  color:#fff;
  margin-top:8px;
  outline:none;
- box-shadow:
- inset01px0 rgba(255,255,255,.12),
-08px18px rgba(0,0,0,.35);
+ box-shadow: inset01px0 rgba(255,255,255,.12),08px18px rgba(0,0,0,.35);
 }
 input:focus{
  border-color:var(--gold-hi);
@@ -104,8 +102,6 @@ button{
  width:100%;
  border-radius:18px;
  margin-top:10px;
-
- /* фон кнопки */
  background:
  linear-gradient(rgba(0,0,0,.28), rgba(0,0,0,.28)),
  url("https://i.pinimg.com/1200x/ab/60/f9/ab60f9ee3911eab2ca23f391a5fd9622.jpg") center/cover no-repeat;
@@ -115,14 +111,15 @@ button{
  inset01px0 rgba(255,255,255,.28),
  inset0 -4px10px rgba(0,0,0,.55);
 
- /* текст «выжженный/выбитый» */
- color: rgba(30,20,12,0.85);
+ /* усиленный «выжженный» эффект */
+ color: rgba(240,230,210,0.95); /* светлее */
  text-shadow:
-0 -1px1px rgba(0,0,0,0.7),
 01px0 rgba(255,255,255,0.25),
-02px6px rgba(0,0,0,0.65);
- -webkit-text-stroke:0.6px rgba(0,0,0,0.5);
- filter: drop-shadow(02px3px rgba(0,0,0,0.4));
+0 -1px2px rgba(0,0,0,0.85),
+02px6px rgba(0,0,0,0.8),
+008px rgba(0,0,0,0.7);
+ -webkit-text-stroke:1px rgba(0,0,0,0.55);
+ filter: drop-shadow(02px4px rgba(0,0,0,0.55));
 }
 button:active{
  transform:translateY(1px);
