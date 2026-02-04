@@ -5,11 +5,11 @@
 <title>Готовность производства</title>
 <style>
 :root{
- --glass:rgba(16,18,22,.78); /* тёмно‑серый полупрозрачный */
+ --glass:rgba(28,30,34,.78);
  --gold:#caa24f;
  --gold-hi:#f4e3a1;
  --text:#f7f8fb;
- --muted:#d7caa0;
+ --muted:#d2c59f;
 }
 *{box-sizing:border-box}
 body{
@@ -17,145 +17,79 @@ body{
  color:var(--text);
  font-family:"SF Pro Display","Inter",system-ui,Arial,sans-serif;
  background:
- linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)),
+ linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)),
  url("https://i.pinimg.com/1200x/17/d6/26/17d626d329d068ad30f4e3eebbda1e23.jpg") center/cover fixed no-repeat;
 }
-.wrap{max-width:780px;margin:0 auto;padding:clamp(14px,3vw,22px)}
-
+.wrap{max-width:760px;margin:0 auto;padding:clamp(12px,3vw,20px)}
 .card{
- position:relative;
- background:
- radial-gradient(140%140% at10%0%, rgba(255,255,255,.06), transparent60%),
- linear-gradient(135deg, rgba(255,255,255,.03), rgba(0,0,0,.45)),
- var(--glass);
+ background:linear-gradient(135deg, rgba(255,255,255,.05), rgba(0,0,0,.25)),var(--glass);
  border:2px solid var(--gold);
- border-radius:24px;
- padding:clamp(16px,3vw,24px);
- margin-bottom:clamp(12px,3vw,18px);
- box-shadow:
-018px42px rgba(0,0,0,.55),
- inset01px0 rgba(255,255,255,.18),
- inset0 -4px10px rgba(0,0,0,.65);
+ border-radius:22px;
+ padding:clamp(14px,3vw,22px);
+ margin-bottom:clamp(10px,3vw,16px);
+ box-shadow:012px28px rgba(0,0,0,.4), inset01px0 rgba(255,255,255,.2);
+ position:relative;
 }
 .card:before{
  content:"";
  position:absolute;
  inset:2px;
- border-radius:22px;
- border:1px solid rgba(255,255,255,.06);
+ border-radius:20px;
+ border:1px solid rgba(255,255,255,.07);
  pointer-events:none;
 }
-.card:after{
- content:"";
- position:absolute;
- inset:0;
- border-radius:24px;
- box-shadow:
-0028px rgba(202,162,79,.18),
- inset0018px rgba(202,162,79,.10);
- pointer-events:none;
-}
-
-h2{
- font-size:clamp(22px,5vw,32px);
- margin:006px;
- text-shadow:02px6px rgba(0,0,0,.6);
-}
-h3{
- font-size:clamp(18px,4vw,24px);
- margin:6px010px;
- color:var(--muted);
- text-shadow:02px6px rgba(0,0,0,.5);
-}
-
-video{
- width:100%;
- border-radius:16px;
- border:2px solid rgba(255,255,255,.12);
- background:#000;
- pointer-events:none;
- box-shadow:010px24px rgba(0,0,0,.5), inset0010px rgba(255,255,255,.06);
-}
-
+h2{font-size:clamp(22px,5vw,32px);margin:006px}
+h3{font-size:clamp(18px,4vw,24px);margin:6px010px;color:var(--muted)}
+video{width:100%;border-radius:14px;border:2px solid rgba(255,255,255,.1);background:#000;pointer-events:none}
 input{
  font-size:clamp(16px,4.2vw,22px);
  padding:clamp(10px,3vw,14px) clamp(12px,3vw,16px);
  width:100%;
- border-radius:16px;
+ border-radius:14px;
  border:2px solid var(--gold);
- background:rgba(8,10,14,.75);
+ background:rgba(6,8,12,.6);
  color:#fff;
  margin-top:8px;
  outline:none;
- box-shadow: inset01px0 rgba(255,255,255,.12),08px18px rgba(0,0,0,.35);
 }
-input:focus{
- border-color:var(--gold-hi);
- box-shadow:0002px rgba(244,227,161,.18),08px18px rgba(0,0,0,.4);
-}
-
+input:focus{border-color:var(--gold-hi);box-shadow:003px rgba(244,227,161,.18)}
 button{
  font-size:clamp(18px,4.6vw,26px);
- font-weight:900;
- letter-spacing:.4px;
+ font-weight:800;
+ letter-spacing:.3px;
  padding:clamp(12px,3.2vw,16px);
  width:100%;
- border-radius:18px;
+ border-radius:16px;
  margin-top:10px;
+ color:#f7f0d4;
+ text-shadow:01px1px rgba(0,0,0,.7);
  background:
- linear-gradient(rgba(0,0,0,.28), rgba(0,0,0,.28)),
+ linear-gradient(rgba(0,0,0,.25), rgba(0,0,0,.25)),
  url("https://i.pinimg.com/1200x/ab/60/f9/ab60f9ee3911eab2ca23f391a5fd9622.jpg") center/cover no-repeat;
  border:2px solid var(--gold);
- box-shadow:
-014px28px rgba(0,0,0,.45),
- inset01px0 rgba(255,255,255,.28),
- inset0 -4px10px rgba(0,0,0,.55);
-
- /* усиленный «выжженный» эффект */
- color: rgba(240,230,210,0.95); /* светлее */
- text-shadow:
-01px0 rgba(255,255,255,0.25),
-0 -1px2px rgba(0,0,0,0.85),
-02px6px rgba(0,0,0,0.8),
-008px rgba(0,0,0,0.7);
- -webkit-text-stroke:1px rgba(0,0,0,0.55);
- filter: drop-shadow(02px4px rgba(0,0,0,0.55));
+ box-shadow:08px18px rgba(0,0,0,.35), inset01px0 rgba(255,255,255,.2);
 }
-button:active{
- transform:translateY(1px);
- box-shadow:010px20px rgba(0,0,0,.45), inset01px0 rgba(255,255,255,.22);
-}
-
+button:active{transform:translateY(1px)}
 #startCam{display:block}
-
-.small{
- font-size:clamp(12px,3.2vw,16px);
- color:var(--muted);
- text-shadow:02px5px rgba(0,0,0,.55);
-}
+.small{font-size:clamp(12px,3.2vw,16px);color:var(--muted)}
 #status{
  margin-top:10px;
- font-weight:800;
+ font-weight:700;
  font-size:clamp(14px,3.6vw,18px);
  min-height:20px;
- padding:8px10px;
- background:rgba(0,0,0,.35);
- border-radius:12px;
+ padding:6px8px;
+ background:rgba(0,0,0,.25);
+ border-radius:10px;
  border:1px solid rgba(255,255,255,.08);
- box-shadow:inset01px0 rgba(255,255,255,.08),08px18px rgba(0,0,0,.35);
- text-shadow:02px6px rgba(0,0,0,.6);
 }
-
 .badge{
  display:inline-block;
  font-size:clamp(12px,3vw,16px);
- padding:6px12px;
+ padding:6px10px;
  border-radius:999px;
- background:linear-gradient(135deg, rgba(255,255,255,.14), rgba(0,0,0,.2));
+ background:rgba(255,255,255,.08);
  border:1px solid var(--gold);
  color:var(--gold-hi);
- text-shadow:02px6px rgba(0,0,0,.6);
- box-shadow:06px16px rgba(0,0,0,.35), inset01px0 rgba(255,255,255,.2);
 }
 .grid{display:grid;gap:8px}
 </style>
@@ -261,10 +195,10 @@ function callApi(params, cb){
  const timeout = setTimeout(() => {
  if (!done) {
  done = true;
- statusEl.innerHTML = "⏳ Обрабатывается (долго)";
+ statusEl.innerHTML = "⚠️ Нет ответа от сервера";
  window[cbName] && delete window[cbName];
  }
- },25000);
+ },8000);
 
  window[cbName] = function(res){
  if (done) return;
