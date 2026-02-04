@@ -122,8 +122,8 @@ button:active{transform:translateY(1px)}
  <button data-stage="prisadka">Присадка</button>
  <button data-stage="upakovka">Упаковка</button>
 
- <!-- Новая кнопка: красит ту же ячейку, что и ХДФ -->
- <button data-stage="hdf" data-only="pila-hdf">ПИЛА ХДФ</button>
+ <!-- Новая кнопка: красит ту же ячейку, что и ХДФ, но оранжевым -->
+ <button data-stage="hdf" data-only="pila-hdf" data-color="#f39931">ПИЛА ХДФ</button>
  </div>
  <div id="status">Готово к работе</div>
  </div>
@@ -231,7 +231,7 @@ function callApi(params, cb){
  document.body.appendChild(script);
 }
 
-function sendStage(stage){
+function sendStage(stage, color){
  let raw = orderInput.value.trim();
  let name = workerInput.value.trim();
  if(!raw){ statusEl.innerHTML="Введите/сканируйте номер"; return; }
@@ -243,6 +243,7 @@ function sendStage(stage){
  stage:stage,
  order:raw,
  name:name,
+ color: color || '',
  db:''
  }, function(res){
  statusEl.innerHTML = res.ok ? "✅ Готово" : "⚠️ " + res.msg;
@@ -277,8 +278,9 @@ const only = (params.get('only') || '').toLowerCase();
 document.querySelectorAll('#stageButtons button').forEach(btn=>{
  const stage = btn.dataset.stage;
  const key = (btn.dataset.only || stage).toLowerCase();
+ const color = btn.dataset.color || '';
 
- btn.onclick = () => sendStage(stage);
+ btn.onclick = () => sendStage(stage, color);
 
  if (only && key !== only) btn.style.display = 'none';
 });
