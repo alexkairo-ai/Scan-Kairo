@@ -199,17 +199,17 @@ let editMode = false;
 let currentReports = [];
 
 function isStreamActive(){
- return stream && stream.getTracks().some(t => t.readyState === "live");
+ return stream && stream.getTracks().some(function(t){ return t.readyState === "live"; });
 }
 function showScanButton(show){ startBtn.style.display = show ? "block" : "none"; }
 function stopCamera(){
- if (stream) stream.getTracks().forEach(t => t.stop());
+ if (stream) stream.getTracks().forEach(function(t){ t.stop(); });
  stream = null;
  if (stopTimer) { clearTimeout(stopTimer); stopTimer = null; }
  showScanButton(true);
 }
 function freezeCamera(){
- if (stream) stream.getTracks().forEach(t => t.stop());
+ if (stream) stream.getTracks().forEach(function(t){ t.stop(); });
  locked = true;
  if (stopTimer) { clearTimeout(stopTimer); stopTimer = null; }
  showScanButton(true);
@@ -228,7 +228,7 @@ async function startCamera(){
  showScanButton(false);
 
  if (stopTimer) clearTimeout(stopTimer);
- stopTimer = setTimeout(() => {
+ stopTimer = setTimeout(function(){
  if (!locked) { msg.innerHTML = "Сканирование остановлено. Нажмите «СКАНИРОВАТЬ»."; stopCamera(); }
  },20000);
 
@@ -248,11 +248,11 @@ function callApi(params, cb){
  const cbName = 'cb_' + Math.random().toString(36).slice(2);
  let done = false;
 
- const timeout = setTimeout(() => {
+ const timeout = setTimeout(function(){
  if (!done) {
  done = true;
  statusEl.innerHTML = "⚠️ Нет ответа от сервера";
- window[cbName] && delete window[cbName];
+ if (window[cbName]) delete window[cbName];
  }
  },8000);
 
@@ -272,7 +272,7 @@ function callApi(params, cb){
 
  const script = document.createElement('script');
  script.src = API_URL + '?' + query.toString();
- script.onerror = () => {
+ script.onerror = function(){
  if (done) return;
  done = true;
  clearTimeout(timeout);
@@ -326,12 +326,12 @@ function scan(){
 const params = new URLSearchParams(location.search);
 const only = (params.get('only') || '').toLowerCase();
 
-document.querySelectorAll('#stageButtons button').forEach(btn=>{
+document.querySelectorAll('#stageButtons button').forEach(function(btn){
  const stage = btn.dataset.stage;
  const key = (btn.dataset.only || stage).toLowerCase();
  const color = btn.dataset.color || '';
 
- btn.onclick = () => sendStage(stage, color);
+ btn.onclick = function(){ sendStage(stage, color); };
 
  if (only && key !== only) btn.style.display = 'none';
 });
@@ -362,7 +362,7 @@ function loadReports(filter){
 
 function renderReports(){
  reportsTableBody.innerHTML = '';
- currentReports.forEach(r => {
+ currentReports.forEach(function(r){
  const tr = document.createElement('tr');
 
  const orderTd = document.createElement('td');
@@ -374,13 +374,24 @@ function renderReports(){
  const actionTd = document.createElement('td');
 
  if (editMode){
- orderTd.innerHTML = `<input value="${r.order}">`;
- dateTd.innerHTML = `<input value="${r.date}">`;
- timeTd.innerHTML = `<input value="${r.time}">`;
- stageTd.innerHTML = `<input value="${r.stage}">`;
- nameTd.innerHTML = `<input value="${r.name}">`;
- actionTd.innerHTML = `<button data-db="${r.db}" data-row="${r.row}">Сохранить</button>`;
+ const i1 = document.createElement('input'); i1.value = r.order || '';
+ const i2 = document.createElement('input'); i2.value = r.date || '';
+ const i3 = document.createElement('input'); i3.value = r.time || '';
+ const i4 = document.createElement('input'); i4.value = r.stage || '';
+ const i5 = document.createElement('input'); i5.value = r.name || '';
+
+ orderTd.appendChild(i1);
+ dateTd.appendChild(i2);
+ timeTd.appendChild(i3);
+ stageTd.appendChild(i4);
+ nameTd.appendChild(i5);
+
+ const btn = document.createElement('button');
+ btn.textContent = 'Сохранить';
+ btn.dataset.db = r.db;
+ btn.dataset.row = r.row;
  actionTd.classList.add('row-actions');
+ actionTd.appendChild(btn);
  } else {
  orderTd.textContent = r.order;
  dateTd.textContent = r.date;
@@ -389,6 +400,7 @@ function renderReports(){
  nameTd.textContent = r.name;
  actionTd.textContent = '';
  }
+
  dbTd.textContent = r.db || '';
 
  tr.appendChild(orderTd);
@@ -403,8 +415,8 @@ function renderReports(){
  });
 
  if (editMode){
- reportsTableBody.querySelectorAll('button').forEach(btn=>{
- btn.onclick = () => {
+ reportsTableBody.querySelectorAll('button').forEach(function(btn){
+ btn.onclick = function(){
  const tr = btn.closest('tr');
  const inputs = tr.querySelectorAll('input');
  const payload = {
@@ -418,25 +430,21 @@ function renderReports(){
  name: inputs[4].value.trim()
  };
  callApi(payload, function(res){
- if (res.ok) {
- reportsStatus.textContent = '✅ Сохранено';
- } else {
- reportsStatus.textContent = '⚠️ ' + res.msg;
- }
+ reportsStatus.textContent = res.ok ? '✅ Сохранено' : ('⚠️ ' + res.msg);
  });
  };
  });
  }
 }
 
-document.querySelectorAll('.filters button').forEach(btn=>{
- btn.onclick = ()=> loadReports(btn.dataset.filter);
+document.querySelectorAll('.filters button').forEach(function(btn){
+ btn.onclick = function(){ loadReports(btn.dataset.filter); };
 });
 
 openReportsBtn.onclick = openReports;
 closeReportsBtn.onclick = closeReports;
 
-editReportsBtn.onclick = () => {
+editReportsBtn.onclick = function(){
  const p = prompt('Пароль:');
  if (p === EDIT_PASS){
  editMode = true;
