@@ -94,42 +94,20 @@ button:active{transform:translateY(1px)}
 .grid{display:grid;gap:8px}
 
 /* Reports table */
-.table{
- width:100%;
- border-collapse:collapse;
- font-size:14px;
-}
-.table th, .table td{
- border-bottom:1px solid rgba(255,255,255,.1);
- padding:8px6px;
- text-align:left;
-}
+.table{width:100%;border-collapse:collapse;font-size:14px}
+.table th,.table td{border-bottom:1px solid rgba(255,255,255,.1);padding:8px6px;text-align:left}
 .table th{color:var(--muted)}
 .table tr:hover{background:rgba(255,255,255,.03)}
-.row-actions button{
- width:auto;
- padding:6px10px;
- font-size:14px;
- margin:0;
-}
-.filters{
- display:flex;
- gap:8px;
- flex-wrap:wrap;
-}
-.filters button{
- width:auto;
- font-size:14px;
- padding:8px12px;
-}
+.row-actions button{width:auto;padding:6px10px;font-size:14px;margin:0}
+.filters{display:flex;gap:8px;flex-wrap:wrap}
+.filters button{width:auto;font-size:14px;padding:8px12px}
 .hidden{display:none}
 </style>
 </head>
 <body>
 <div class="wrap">
 
- <!-- MAIN VIEW -->
- <div id="mainView">
+<div id="mainView">
  <div class="card">
  <div class="badge">Готовность производства</div>
  <h2>Сканируйте QR заказа</h2>
@@ -162,10 +140,9 @@ button:active{transform:translateY(1px)}
  <div class="card">
  <button id="openReports">ОТЧЁТЫ</button>
  </div>
- </div>
+</div>
 
- <!-- REPORTS VIEW -->
- <div id="reportsView" class="hidden">
+<div id="reportsView" class="hidden">
  <div class="card">
  <div class="badge">Отчёты</div>
  <div class="filters">
@@ -179,13 +156,7 @@ button:active{transform:translateY(1px)}
  <table class="table" id="reportsTable">
  <thead>
  <tr>
- <th>Заказ</th>
- <th>Дата</th>
- <th>Время</th>
- <th>Этап</th>
- <th>Сотрудник</th>
- <th>Таблица</th>
- <th class="row-actions">Действия</th>
+ <th>Заказ</th><th>Дата</th><th>Время</th><th>Этап</th><th>Сотрудник</th><th>Таблица</th><th class="row-actions">Действия</th>
  </tr>
  </thead>
  <tbody></tbody>
@@ -194,7 +165,8 @@ button:active{transform:translateY(1px)}
  <button id="editReports">Редактировать</button>
  <button id="closeReports" style="margin-top:8px;">Назад</button>
  </div>
- </div>
+</div>
+
 </div>
 
 <script src="https://unpkg.com/jsqr/dist/jsQR.js"></script>
